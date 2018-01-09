@@ -68,8 +68,6 @@ cols_jj = np.arange(x_coords.size)
 
 PAI = np.zeros((rows,cols))*np.nan
 pt_dens = np.zeros((rows,cols))
-n_returns_sub2m = np.zeros((rows,cols))
-
 
 # Phase three - loop through las tiles and gradually fill the array
 las_files = np.genfromtxt(las_list,delimiter=',',dtype='S256')
@@ -133,7 +131,6 @@ for i in range(0,n_files):
                 
                     PAI[row_ii,col_jj] = np.sum(PAD_iter)
                     pt_dens[row_ii,col_jj] = sample_pts.shape[0]/(np.pi*radius**2.)
-                    n_returns_sub2m[row_ii,col_jj] = np.sum(np.all((sample_pts[:,3]==1,sample_pts[:,2]<min_height),axis=0))
 
             sample_pts=None
     lidar_pts = None
@@ -146,6 +143,5 @@ YMaximum = y_coords.max() + raster_res/2.
 geoTransform = [ XMinimum, raster_res, 0, YMaximum, 0, -raster_res ]
 
 print "\t\t\t Saving rasters: %s" % var
-raster.write_raster_to_GeoTiff_UTM(PAI, geoTransform, ('%s_pointcloud_metrics_10m_PAI' % (site)), utm)
-raster.write_raster_to_GeoTiff_UTM(PAI, geoTransform, ('%s_pointcloud_metrics_10m_point_density' % (site)), utm)
-raster.write_raster_to_GeoTiff_UTM(PAI, geoTransform, ('%s_pointcloud_metrics_10m_n_returns_sub2m' % (site)), utm)
+raster.write_raster_to_GeoTiff_UTM(PAI, geoTransform, ('arrays/%s_pointcloud_metrics_10m_PAI' % (site)), utm)
+raster.write_raster_to_GeoTiff_UTM(pt_dens, geoTransform, ('arrays/%s_pointcloud_metrics_10m_point_density' % (site)), utm)

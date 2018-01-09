@@ -50,9 +50,9 @@ import raster_io as io
 # Directory listings
 SAVEDIR = '~/'
 
-# Load files
-dens_file = 'arrays_for_lombok/SAFE_pointcloud_metrics_10m_point_density_data.tif'
-PAI_file = 'arrays_for_lombok/SAFE_pointcloud_metrics_10m_pai_data.tif'
+# Load files # paths should point to PAI map and point density map
+dens_file = 'arrays/SAFE_pointcloud_metrics_10m_point_density_data.tif'
+PAI_file = 'arrays/SAFE_pointcloud_metrics_10m_pai_data.tif'
 
 dens, geo, coord = io.load_GeoTIFF_band_and_georeferencing(dens_file)
 PAI, geo, coord = io.load_GeoTIFF_band_and_georeferencing(PAI_file)
@@ -131,7 +131,7 @@ plt.savefig('Fig2_SAFE_point_density_vs_PAI.pdf')
 # landscape
 
 # Load shapefiles
-shapefile_dir = '../Data/Fig1_Shapefiles/'
+shapefile_dir = './Fig1_Shapefiles/'
 land_cover_file = 'HCS_Stratification_DOI.shp'
 vjr_file = 'VJR_prj.shp'
 ea_file = 'EA_prj.shp'
