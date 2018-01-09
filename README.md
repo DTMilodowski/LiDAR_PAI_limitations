@@ -1,4 +1,4 @@
-# LiDAR_canopy
+# LiDAR_PAI_limitations
 **David T. Milodowski**, School of GeoSciences, University of Edinburgh
 
 (January 2018)
